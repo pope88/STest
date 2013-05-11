@@ -5,6 +5,7 @@ package game.net.socket
 	import flash.system.Security;
 	import flash.utils.*;
 	
+	import game.net.core.RequestData;
 	import game.net.pool.*;
 	
 	import log4a.Logger;
@@ -94,7 +95,7 @@ package game.net.socket
 			}
 			this._vector = null;
 			dispatchEvent(new Event(Event.CONNECT));
-			/*this.addCallback(0x00, this.pingCallBack);*/
+			//this.addCallback(0x00, this.pingCallBack);
 			return;
 		}
 		
@@ -151,7 +152,7 @@ package game.net.socket
 					bytes.endian = Endian.LITTLE_ENDIAN;
 					this._socket.readBytes(bytes, 0, this._length);
 					this._readBytes += (this._length + 4);
-					this._requstPool.addReqestData(new RequestD)
+					this._requstPool.addReqestData(new RequestData(0, bytes))
 				}
 				catch(e:Error)
 				{
