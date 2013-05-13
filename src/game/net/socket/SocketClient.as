@@ -95,20 +95,20 @@ package game.net.socket
 			}
 			this._vector = null;
 			dispatchEvent(new Event(Event.CONNECT));
-			//this.addCallback(0x00, this.pingCallBack);
+			this.addCallback(0x00, this.pingCallBack);
 			return;
 		}
 		
-		/*private function pingCallBack(mPin:SCPing):void
+		private function pingCallBack(mPin:SCPing):void
 		{
-			this._socketDelay = getTimer() - param1.ping;
-			this._pingGap = this._pingGap / ((getTimer() - param1.ping) / 200);
+			this._socketDelay = getTimer() - mPin.ping;
+			this._pingGap = this._pingGap / ((getTimer() - mPin.ping) / 200);
 			if (this._socketDelay > this._maxPing)
 			{
 				this._maxPing = this._socketDelay;
 			}
 			return;
-		}*/
+		}
 		
 		private function socket_closeHandler(event:Event):void
 		{
@@ -221,6 +221,7 @@ package game.net.socket
 		private var _parser:SocketParser;
 		private var _data:SocketData;
 		private var _length:uint;
+		private var _pingGap:uint = 7200;
 		
 		private var _socketDelay:uint = 0;
 		private var _maxPing:uint = 0;
